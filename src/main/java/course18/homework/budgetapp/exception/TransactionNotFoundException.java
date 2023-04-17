@@ -1,0 +1,7 @@
+package course18.homework.budgetapp.exception;
+
+public class TransactionNotFoundException extends RuntimeException {
+    public TransactionNotFoundException(String message) {
+        super(message);
+    }
+}
