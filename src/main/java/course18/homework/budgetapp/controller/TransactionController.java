@@ -1,14 +1,11 @@
 package course18.homework.budgetapp.controller;
 
-import course18.homework.budgetapp.exception.TransactionNotFoundException;
 import course18.homework.budgetapp.model.Transaction;
 import course18.homework.budgetapp.model.TransactionType;
 import course18.homework.budgetapp.service.TransactionService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Map;
@@ -34,11 +31,7 @@ public class TransactionController {
     @GetMapping("{id}")
     public Transaction getTransactionById(@PathVariable String id) {
         log.info("GET transaction by id call");
-        try {
-            return transactionService.getTransactionById(id);
-        } catch (TransactionNotFoundException exception) {
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN, exception.getMessage());
-        }
+        return transactionService.getTransactionById(id);
     }
 
     @GetMapping("reports/type")

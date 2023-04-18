@@ -23,15 +23,12 @@ public class TransactionService {
     }
 
     public List<Transaction> getAllTransactions(String product, TransactionType type, Double minAmount, Double maxAmount) {
-        List<Transaction> results = new ArrayList<>();
-
-        results.addAll(transactions.stream()
+        return transactions.stream()
                 .filter(transaction -> (product == null || product.equals(transaction.product())))
                 .filter(transaction -> (type == null || type.equals(transaction.type())))
                 .filter(transaction -> (minAmount == null || minAmount < transaction.amount()))
                 .filter(transaction -> (maxAmount == null || maxAmount > transaction.amount()))
-                .toList());
-        return results;
+                .toList();
     }
 
     public Transaction getTransactionById(String id) {
